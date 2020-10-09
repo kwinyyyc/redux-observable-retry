@@ -9,6 +9,7 @@ function App() {
   const [ username, setUsername] = React.useState('');
 
   const githubUser = useSelector((state) => state.githubUser);
+  const status = useSelector((state) => state.status);
 
   const onChangeInput = (event) => {
     setUsername(event.target.value)
@@ -35,6 +36,7 @@ function App() {
         <input value={username} onChange={onChangeInput}></input>
         <button onClick={onClickButton}>Fetch from github</button>
         <p>{githubUser?.name}</p>
+        <p>{status}</p>
       </header>
     </div>
   );

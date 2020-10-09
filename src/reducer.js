@@ -1,4 +1,4 @@
-import { FETCH_USER, FETCH_USER_FULFILLED } from './rootEpic';
+import { FETCH_USER, FETCH_USER_FULFILLED, FETCH_USER_REJECTED } from './rootEpic';
 
 export function reducer(state = { githubUser: null, status: null }, action) {
     if (action.type === FETCH_USER) {
@@ -7,7 +7,10 @@ export function reducer(state = { githubUser: null, status: null }, action) {
     } else if (action.type === FETCH_USER_FULFILLED) {
         const newState = { ...state, githubUser: action.payload, status: 'success'}
       return newState;
-    } else {
+    } else if (action.type === FETCH_USER_REJECTED) {
+        const newState = { ...state, githubUser: null, status: 'failed'}
+      return newState;
+   } else {
       return state 
     }
   }
